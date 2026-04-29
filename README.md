@@ -1,7 +1,7 @@
 
 ---
 
-# 🚀 Mini-Projeto: Sistema Web Flask com CRUD, Autenticação JWT e Deploy no Render
+# 🚀 Mini-Projeto: Sistema Web Flask com CRUD, autenticação JWT e deploy no Render
 
 ## Descrição do Projeto
 
