@@ -1,0 +1,78 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+build/
+dist/
+.eggs/
+pip-wheel-metadata/
+
+# Virtual environment
+venv/
+.venv/
+ENV/
+env/
+.pyenv/
+
+# IDEs and editors
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# dotenv
+.env
+
+# Pytest
+.pytest_cache/
+
+# Flask specific
+instance/
+.webassets-cache
+
+# Database files
+*.sqlite3
+*.db
+
+# Logs and runtime files
+*.log
+*.pid
+*.cache
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# PyCharm
+*.iml
+*.ipr
+*.iws
+
+# Coverage
+htmlcov/
+.coverage
+.coverage.*
+
+# Distribution
+*.7z
+*.zip
+*.tar.gz
+*.tar.bz2
+
+# Unit test / coverage reports
+coverage.xml
+*.cover
+*.py,cover
+
+# Other
+.env.local
+.env.*.local
+
+# PostgreSQL specific
+pgdata/
