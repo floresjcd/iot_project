@@ -281,6 +281,7 @@ O projeto está configurado para deploy contínuo no Render usando o arquivo `re
 *   **Variáveis de Ambiente**: Chaves secretas e credenciais de banco de dados são gerenciadas via variáveis de ambiente, evitando que sejam expostas diretamente no código-fonte.
 
 
+
 ## Autor
 José Carlos Flores
 Curso de Especialização em Internet das Coisas (IoT)
