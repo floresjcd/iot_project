@@ -1,10 +1,17 @@
-# Mini-Projeto: Sistema Web Flask com CRUD, Autenticação JWT e Deploy no Render
+
+---
+
+# 🚀 Mini-Projeto: Sistema Web Flask com CRUD, Autenticação JWT e Deploy no Render
 
 ## Descrição do Projeto
+
+Projeto desenvolvido para a disciplina de **Desenvolvimento de aplicações de software** do Curso de Especialização em Internet das Coisas (IoT) do Instituto Federal de Rondônia (IFRO)
 
 Este mini-projeto consiste em um sistema web desenvolvido com Flask, seguindo o padrão arquitetural MVC (Model–View–Controller). Ele oferece um CRUD (Create, Read, Update, Delete) completo para gerenciamento de registros (neste caso, produtos), autenticação de usuários com JWT (JSON Web Tokens), autorização baseada em roles (Admin e Usuário Comum), persistência de dados utilizando SQLAlchemy com PostgreSQL, e está configurado para implantação na nuvem através da plataforma Render.
 
 O objetivo é demonstrar a construção de uma aplicação web robusta e escalável, abordando conceitos essenciais de desenvolvimento de software e práticas de deploy.
+
+---
 
 ## Funcionalidades Principais
 
@@ -275,13 +282,10 @@ O projeto está configurado para deploy contínuo no Render usando o arquivo `re
 
 
 ## Autor
-
 José Carlos Flores
-
 Curso de Especialização em Internet das Coisas (IoT)
 
 ## Licença
-
 Projeto desenvolvido para fins acadêmicos (IFRO - IoT).
 
 ---
