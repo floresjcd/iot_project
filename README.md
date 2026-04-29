@@ -273,14 +273,6 @@ O projeto está configurado para deploy contínuo no Render usando o arquivo `re
 *   **Tokens JWT**: Os tokens JWT são usados para autenticação e autorização, com chaves secretas geradas para garantir a integridade e confidencialidade dos tokens.
 *   **Variáveis de Ambiente**: Chaves secretas e credenciais de banco de dados são gerenciadas via variáveis de ambiente, evitando que sejam expostas diretamente no código-fonte.
 
-## Próximos Passos e Melhorias Potenciais
-
-*   **Validação de Entrada**: Implementar validação mais robusta para os dados de entrada (e.g., com `Flask-Marshmallow` ou `Pydantic`).
-*   **Testes Unitários e de Integração**: Adicionar testes para garantir a funcionalidade e a robustez da aplicação.
-*   **Paginação**: Implementar paginação para as listagens de produtos.
-*   **Tratamento de Erros Global**: Um tratamento de erros mais sofisticado para a API.
-*   **Dockerização**: Empacotar a aplicação em um contêiner Docker para maior portabilidade e consistência em diferentes ambientes.
-*   **Frontend**: Desenvolver uma interface de usuário (UI) para interagir com a API (e.g., com React, Vue.js ou Angular).
 
 ## Autor
 
