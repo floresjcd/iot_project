@@ -37,25 +37,24 @@ iot_project/
 ├── app/
 │   ├── __init__.py         # Inicializa o aplicativo Flask, configura SQLAlchemy e JWT, e registra os blueprints dos controllers.
 │   ├── controllers/
-│   │   ├── __init__.py    # Torna 'controllers' um pacote Python.
+│   │   ├── __init__.py           # Torna 'controllers' um pacote Python.
 │   │   ├── auth_controller.py    # Define as rotas para registro e login de usuários, gerando tokens JWT.
 │   │   └── product_controller.py # Define as rotas para operações CRUD de produtos, incluindo controle de acesso por role.
 │   ├── models/
-│   │   ├── __init__.py    # Torna 'models' um pacote Python e importa os modelos User e Product.
-│   │   ├── user.py             # Define o modelo `User` para o banco de dados, incluindo hashing de senha e roles.
-│   │   └── product.py          # Define o modelo `Product` para o banco de dados.
-│   └── views/                  # (Neste projeto, as 
-views são JSON, então esta pasta está vazia, mas seria usada para templates HTML em um projeto com frontend tradicional.)
-│       └── __init__.py    # Torna 'views' um pacote Python.
+│   │   ├── __init__.py            # Torna 'models' um pacote Python e importa os modelos User e Product.
+│   │   ├── user.py                # Define o modelo `User` para o banco de dados, incluindo hashing de senha e roles.
+│   │   └── product.py             # Define o modelo `Product` para o banco de dados.
+│   └── views/                     # (Neste projeto, as views são JSON, então esta pasta está vazia, mas seria usada para templates HTML em um projeto com frontend tradicional.)
+│       └── __init__.py            # Torna 'views' um pacote Python.
 ├── config/
-│   └── config.py           # Contém a classe `Config` para gerenciar as configurações da aplicação, como chaves secretas e URI do banco de dados.
+│   └── config.py                  # Contém a classe `Config` para gerenciar as configurações da aplicação, como chaves secretas e URI do banco de dados.
 ├── scripts/
-│   └── init_db.sql         # Um script SQL opcional para criar as tabelas `users` e `products` manualmente no PostgreSQL.
-├── .env                    # Arquivo para armazenar variáveis de ambiente localmente, como chaves secretas e a URL do banco de dados.
-├── requirements.txt        # Lista todas as dependências Python necessárias para o projeto.
-├── run.py                  # O ponto de entrada principal da aplicação Flask, responsável por criar e executar o aplicativo.
-└── render.yaml             # Arquivo de configuração para o deploy automatizado da aplicação e do banco de dados no Render.
-└── README.md               # Este arquivo, contendo a documentação completa do projeto.
+│   └── init_db.sql                # Um script SQL opcional para criar as tabelas `users` e `products` manualmente no PostgreSQL.
+├── .env                           # Arquivo para armazenar variáveis de ambiente localmente, como chaves secretas e a URL do banco de dados.
+├── requirements.txt               # Lista todas as dependências Python necessárias para o projeto.
+├── run.py                         # O ponto de entrada principal da aplicação Flask, responsável por criar e executar o aplicativo.
+└── render.yaml                    # Arquivo de configuração para o deploy automatizado da aplicação e do banco de dados no Render.
+└── README.md                      # Este arquivo, contendo a documentação completa do projeto.
 ```
 
 ## Configuração do Ambiente Local
@@ -256,30 +255,74 @@ Para testar a diferença entre **Admin** e **User**:
 3.  Tente listar os produtos: Você verá que ele só enxerga os produtos que ele mesmo criou.
 4.  Tente deletar um produto criado pelo Admin: O sistema deve retornar um erro de **"Não autorizado"** (403).    
 
-## Deploy no Render
+## Deploy no Render (Seup manual)
 
-O projeto está configurado para deploy contínuo no Render usando o arquivo `render.yaml`.
+baixo seguem as instruções do passo a passo para configurar manualmente o projeto IoT no Render, criando um Web Service e um banco de dados PostgreSQL.
 
-### Passos para Deploy
+## Pré-requisitos
+- Conta no Render (acesse [render.com](https://render.com) e faça login).
+- Repositório GitHub com o código do projeto (certifique-se de que o repositório esteja público ou vinculado à sua conta Render).
+- Conhecimento básico de PostgreSQL e Python.
 
-1.  **Crie uma conta no Render**: Se você ainda não tem uma, crie uma conta em [render.com](https://render.com/).
+## Passo 1: Criar o Banco de Dados PostgreSQL
+1. Acesse o painel do Render em [dashboard.render.com](https://dashboard.render.com).
+2. Clique em "New" > "PostgreSQL".
+3. Configure o banco de dados:
+   - **Name**: Escolha um nome único, como `iot-project-db`.
+   - **Database**: Deixe como padrão ou defina como `iot_db`.
+   - **User**: Deixe como padrão ou defina um nome de usuário.
+   - **Region**: Escolha uma região próxima (ex.: US East).
+   - Clique em "Create Database".
+4. Aguarde a criação. Anote as credenciais fornecidas:
+   - **Host**: Ex.: `dpg-xxxxxxx.render.com`
+   - **Port**: Geralmente 5432.
+   - **Database Name**: Ex.: `iot_db`
+   - **Username**: Ex.: `iot_user`
+   - **Password**: A senha gerada (guarde em um local seguro).
+5. Após a criação, vá para a aba "Connections" no painel do banco e copie a **Internal Database URL** ou construa a string de conexão no formato:
+   ```
+   postgresql://username:password@host:port/database
+   ```
+   Exemplo: `postgresql://iot_user:senha123@dpg-xxxxxxx.render.com:5432/iot_db`
 
-2.  **Conecte seu repositório Git**: Conecte seu repositório GitHub/GitLab ao Render.
+## Passo 2: Configurar o Banco de Dados (Executar Scripts SQL)
+Antes de conectar a aplicação, você precisa executar os scripts SQL para inicializar o banco.
 
-3.  **Crie um novo Blueprint**: No dashboard do Render, selecione "New" -> "Blueprint" e aponte para o seu repositório.
+1. No painel do Render, vá para o seu banco PostgreSQL recém-criado.
+2. Clique na aba "Query" ou use uma ferramenta externa como pgAdmin ou psql para conectar ao banco usando as credenciais acima.
+3. Execute os scripts na ordem:
+   - Primeiro, execute `scripts/init_db.sql` (cria tabelas básicas).
+   - Depois, execute `scripts/setup_iot_db.sql` (configurações específicas do IoT).
+   - Opcionalmente, execute `scripts/fix_permissions.sql` se houver problemas de permissões.
+4. Verifique se as tabelas foram criadas corretamente (ex.: tabelas de usuários e produtos baseadas nos modelos em `app/models/`).
 
-4.  **Configuração Automática**: O Render detectará o arquivo `render.yaml` e configurará automaticamente um serviço web (Flask) e um banco de dados PostgreSQL.
+**Nota**: Se preferir, você pode executar esses scripts localmente usando uma ferramenta como psql ou pgAdmin, conectando-se ao banco Render via internet.
 
-5.  **Variáveis de Ambiente**: O `render.yaml` já configura as variáveis `DATABASE_URL`, `SECRET_KEY` e `JWT_SECRET_KEY` automaticamente. A `DATABASE_URL` será preenchida com a string de conexão do banco de dados PostgreSQL criado no Render, e as chaves secretas serão geradas automaticamente.
+## Passo 3: Criar o Web Service
+1. No painel do Render, clique em "New" > "Web Service".
+2. Conecte ao repositório GitHub:
+   - Selecione o repositório `iot_project` (ou o nome correto do seu repo).
+   - Escolha a branch `main` (ou a branch desejada).
+3. Configure o serviço:
+   - **Name**: Ex.: `iot-project-web`.
+   - **Environment**: Selecione "Python".
+   - **Build Command**: `pip install -r requirements.txt`
+   - **Start Command**: `python run.py` (verifique se `run.py` é o ponto de entrada da aplicação; ajuste se necessário, ex.: `gunicorn app:app` se for Flask).
+4. Defina as variáveis de ambiente:
+   - Clique em "Environment" e adicione:
+     - `DATABASE_URL`: Cole a string de conexão do PostgreSQL criada no Passo 1 (ex.: `postgresql://iot_user:senha123@dpg-xxxxxxx.render.com:5432/iot_db`).
+     - Adicione outras variáveis necessárias, como chaves de API ou configurações específicas (verifique `config/config.py` para mais detalhes).
+5. Clique em "Create Web Service".
+6. Aguarde o deploy. O Render irá construir e iniciar a aplicação automaticamente.
 
-6.  **Deploy**: O Render iniciará o processo de build e deploy. Após a conclusão, sua aplicação estará online.
-
-## Considerações de Segurança
-
-*   **Hashing de Senhas**: As senhas dos usuários são armazenadas usando `werkzeug.security.generate_password_hash`, garantindo que as senhas em texto claro nunca sejam salvas no banco de dados.
-*   **Tokens JWT**: Os tokens JWT são usados para autenticação e autorização, com chaves secretas geradas para garantir a integridade e confidencialidade dos tokens.
-*   **Variáveis de Ambiente**: Chaves secretas e credenciais de banco de dados são gerenciadas via variáveis de ambiente, evitando que sejam expostas diretamente no código-fonte.
-
+## Passo 4: Verificar o Setup
+1. Após o deploy, acesse a URL fornecida pelo Render (ex.: `https://iot-project-web.onrender.com`).
+2. Teste a aplicação: Verifique se a conexão com o banco funciona (ex.: endpoints de autenticação e produtos em `app/controllers/`).
+3. Monitore logs: No painel do Web Service, vá para "Logs" para verificar erros ou mensagens de inicialização.
+4. Se houver problemas:
+   - Verifique se a `DATABASE_URL` está correta.
+   - Certifique-se de que os scripts SQL foram executados corretamente.
+   - Ajuste comandos de build/start se necessário.
 
 
 ## Autor
