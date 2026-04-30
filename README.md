@@ -345,8 +345,8 @@ Antes de conectar a aplicação, você precisa executar os scripts SQL para inic
 
 
 ## Autor
-José Carlos Flores
-Curso de Especialização em Internet das Coisas (IoT)
+José Carlos Flores  
+IFRO - Curso de Especialização em Internet das Coisas (IoT)
 
 ## Licença
 Projeto desenvolvido para fins acadêmicos (IFRO - IoT).
