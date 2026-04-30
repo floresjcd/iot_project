@@ -76,3 +76,11 @@ coverage.xml
 
 # PostgreSQL specific
 pgdata/
+GUIA_LOGS_RENDER.md
+DIAGNOSTICO_ERRO_500.md
+info.md
+test_render.sh
+TESTE_HEALTH_CHECK.md
+TESTE_RENDER_RAPIDO.md
+TESTE_RENDER_SUMMARY.md
+render.yaml
