@@ -21,3 +21,6 @@ def create_app():
     app.register_blueprint(product_bp, url_prefix='/api/products')
 
     return app
+
+# Create app instance for gunicorn
+app = create_app()
