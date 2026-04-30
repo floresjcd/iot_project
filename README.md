@@ -3,7 +3,7 @@
 
 # 🚀 Mini-Projeto: Sistema Web Flask com CRUD, autenticação JWT e deploy no Render
 
-## Descrição do Projeto
+## Descrição do projeto
 
 Projeto desenvolvido para a disciplina de **Desenvolvimento de aplicações de software** do Curso de Especialização em Internet das Coisas (IoT) do Instituto Federal de Rondônia (IFRO)
 
@@ -13,7 +13,7 @@ O objetivo é demonstrar a construção de uma aplicação web robusta e escalá
 
 ---
 
-## Funcionalidades Principais
+## Funcionalidades principais
 
 1.  **CRUD Completo para Produtos**: Permite criar, listar, editar e excluir registros de produtos.
 2.  **Autenticação de Usuários**: 
@@ -30,12 +30,12 @@ O objetivo é demonstrar a construção de uma aplicação web robusta e escalá
 5.  **Persistência de Dados**: Utiliza Flask-SQLAlchemy para mapeamento objeto-relacional com um banco de dados PostgreSQL.
 6.  **Deploy na Nuvem**: Configurado para implantação automatizada na plataforma Render, incluindo a configuração de um banco de dados PostgreSQL gerenciado.
 
-## Estrutura do Projeto e Descrição dos Arquivos
+## Estrutura do Projeto
 
 ```
 iot_project/
 ├── app/
-│   ├── __init__.py         # Inicializa o aplicativo Flask, configura SQLAlchemy e JWT, e registra os blueprints dos controllers.
+│   ├── __init__.py               # Inicializa o aplicativo Flask, configura SQLAlchemy e JWT, e registra os blueprints dos controllers.
 │   ├── controllers/
 │   │   ├── __init__.py           # Torna 'controllers' um pacote Python.
 │   │   ├── auth_controller.py    # Define as rotas para registro e login de usuários, gerando tokens JWT.
@@ -53,11 +53,10 @@ iot_project/
 ├── .env                           # Arquivo para armazenar variáveis de ambiente localmente, como chaves secretas e a URL do banco de dados.
 ├── requirements.txt               # Lista todas as dependências Python necessárias para o projeto.
 ├── run.py                         # O ponto de entrada principal da aplicação Flask, responsável por criar e executar o aplicativo.
-└── render.yaml                    # Arquivo de configuração para o deploy automatizado da aplicação e do banco de dados no Render.
 └── README.md                      # Este arquivo, contendo a documentação completa do projeto.
 ```
 
-## Configuração do Ambiente Local
+## Configuração do ambiente local
 
 ### Pré-requisitos
 
@@ -319,10 +318,30 @@ Antes de conectar a aplicação, você precisa executar os scripts SQL para inic
 1. Após o deploy, acesse a URL fornecida pelo Render (ex.: `https://iot-project-web.onrender.com`).
 2. Teste a aplicação: Verifique se a conexão com o banco funciona (ex.: endpoints de autenticação e produtos em `app/controllers/`).
 3. Monitore logs: No painel do Web Service, vá para "Logs" para verificar erros ou mensagens de inicialização.
-4. Se houver problemas:
+4. Consulte o arquivo TESTE_RENDER.md para instruções de como testar a aplicação instalada no RENDER.
+5. Se houver problemas:
    - Verifique se a `DATABASE_URL` está correta.
    - Certifique-se de que os scripts SQL foram executados corretamente.
    - Ajuste comandos de build/start se necessário.
+
+6. Imagens do Projeto no Render  
+# DASHBOARD 
+
+![Dashboard:](imagens/Render-DashBoard.jpg)
+
+
+# WEBSERVICE  
+
+![WebService:](imagens/Render-WebService.jpg)
+
+
+# POSTGRESQL  
+
+![WebService:](imagens/Render-PostgreSQL.jpg)
+
+
+
+---
 
 
 ## Autor
